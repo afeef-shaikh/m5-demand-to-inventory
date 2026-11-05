@@ -68,14 +68,16 @@ mh, ml, mt = daily_cost(m)
 nh, nl, nt = daily_cost(nv)
 
 # ---------------- KPI tiles ----------------
+st.caption("Forecast policy at the chosen service level. Arrows compare it with the naive policy at the same setting. "
+           "Daily cost = holding cost + lost margin across all products.")
 c1, c2, c3, c4 = st.columns(4)
-c1.metric("Lost sales (forecast policy)", f"{m['lost_rate']:.1%}",
+c1.metric("Lost sales", f"{m['lost_rate']:.1%}",
           f"{(m['lost_rate'] - nv['lost_rate']) * 100:+.1f} pts vs naive", delta_color="inverse")
-c2.metric("Avg inventory value on hand", f"${m['avg_onhand_value']:,.0f}",
+c2.metric("Inventory on hand", f"${m['avg_onhand_value']:,.0f}",
           f"{m['avg_onhand_value'] / nv['avg_onhand_value'] - 1:+.1%} vs naive", delta_color="inverse")
-c3.metric("Total daily cost (holding + lost margin)", f"${mt:,.0f}",
+c3.metric("Daily cost", f"${mt:,.0f}",
           f"{mt / nt - 1:+.1%} vs naive", delta_color="inverse")
-c4.metric("Fill rate (share of demand served)", f"{1 - m['lost_rate']:.1%}",
+c4.metric("Fill rate", f"{1 - m['lost_rate']:.1%}",
           f"{(nv['lost_rate'] - m['lost_rate']) * 100:+.1f} pts vs naive")
 
 # ---------------- Trade-off curve ----------------
