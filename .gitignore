@@ -1,0 +1,7 @@
+# Data is large and comes from Kaggle; recreate with notebooks 01–03
+/data/
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.DS_Store
