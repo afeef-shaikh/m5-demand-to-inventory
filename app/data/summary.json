@@ -1,0 +1,28 @@
+{
+  "n_series": 3566,
+  "test_start": "2016-02-29",
+  "test_end": "2016-05-22",
+  "headline": {
+    "naive_lost_rate": 0.044170597100894535,
+    "model_lost_rate_equal_inventory": 0.03942888813926258,
+    "lost_reduction_equal_inventory": 0.10734989501728798,
+    "inventory_saving_equal_lost": 0.04637220783636509,
+    "naive_avg_onhand_units": 7.702803260956654,
+    "lost_value_reduction_equal_inventory_value": 0.11980411122301149,
+    "avg_inventory_value": 77151.1899188364,
+    "naive_lost_value_per_day": 692.146677978656,
+    "model_lost_value_per_day_equal_inventory": 609.2246603874632,
+    "sales_recovered_per_year": 30266.53642078537,
+    "margin_recovered_per_year": 9079.960926235612
+  },
+  "forecast_metrics": {
+    "rmse_mean": 2.3428167552921972,
+    "rmse_ma28": 2.4581663608551025,
+    "rmse_snaive": 3.077448606491089,
+    "mae_p50": 1.109919649351136,
+    "mae_ma28": 1.217596173286438,
+    "mae_snaive": 1.482269525527954,
+    "p90_coverage": 0.9054558834351314
+  },
+  "method_md": "- **Data:** Walmart M5, 3 Texas stores, FOODS category. Backtest Feb 29 \u2013 May 22, 2016 (3 folds \u00d7 28 days).\n- **Forecasts:** one global LightGBM model (Tweedie loss) for expected daily demand, plus P50/P90 quantile models. Features are measured at each Monday forecast origin (no leakage).\n- **Policy:** deliveries Monday (covers Mon\u2013Wed) and Thursday (Thu\u2013Sun). Order up to expected demand until the next delivery + z \u00d7 \u03c3 \u00d7 \u221adays, where \u03c3 is the daily sales std over the 28 days before the origin.\n- **Naive policy:** identical rule, but expected demand = 28-day moving average \u00d7 days.\n- **Simulation:** actual sales as demand, lost sales when the shelf is empty, leftovers carry over, no spoilage. Products with likely-unavailable days in the test period are excluded (true demand unknown).\n- **Costs:** holding cost = inventory value \u00d7 annual rate / 365; lost margin = lost sales value \u00d7 margin."
+}
