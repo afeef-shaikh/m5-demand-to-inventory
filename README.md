@@ -4,6 +4,8 @@ I wanted a forecasting project where the end product is a decision a store could
 
 Using Walmart's M5 data for 3 Texas stores and 3,566 grocery products, I forecast daily demand with LightGBM, turned those forecasts into a restocking rule, and replayed 12 weeks of real sales to see what happens. Holding the same amount of inventory, the forecast-driven policy lost 11% fewer sales than a policy based on a 28-day moving average.
 
+There's a live dashboard at [m5-demand-to-inventory.streamlit.app](https://m5-demand-to-inventory.streamlit.app) where you can set the service level and cost assumptions and see how the two policies compare, or look at the forecast for a single product.
+
 ![Inventory held vs. sales lost for both policies](reports/figures/04_01_tradeoff_curve.png)
 
 ## Why this problem
@@ -66,7 +68,7 @@ One idea didn't work. I expected the quantile forecasts to make better safety st
 
 ```
 notebooks/   01_data_prep, 02_eda, 03_forecasting, 04_inventory_simulation
-app/         Streamlit dashboard and the small data files it reads
+app/         Streamlit dashboard (live link above) and the small data files it reads
 reports/     figures used in the notebooks and this README
 data/        not committed; notebook 01 rebuilds it from Kaggle
 ```
